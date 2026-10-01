@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finanzas</title>
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0b0b0b"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<style>
+:root{--bg:#0b0b0b;--cd:#171717;--ln:#2a2a2a;--tx:#f2efe9;--mu:#8a8a85;--ac:#3b82f6;--er:#ff5a4f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="light"]{--bg:#f4f1ec;--cd:#fff;--ln:#e2ddd4;--tx:#1d1a17;--mu:#75706a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{display:grid;grid-template-columns:220px minmax(0,1fr) 260px;gap:12px;max-width:1240px;margin:0 auto;padding:16px}
+@media(max-width:980px){.w{grid-template-columns:1fr}}
+section,aside{min-width:0}
+.hd{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;font-size:16px}
+.cd{background:var(--cd);border:1px solid var(--ln);border-radius:14px;padding:14px;margin-bottom:14px}
+h2{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin:0 0 12px;font-weight:600}
+.k{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.k .cd{margin-bottom:0}.k b{font-size:clamp(15px,1.6vw,21px);overflow-wrap:anywhere}.k .ac{border-color:var(--ac)}
+@media(max-width:560px){.k{grid-template-columns:1fr}}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:12px;margin:12px 0}.two .cd{margin:0;min-width:0;padding:12px}@media(max-width:560px){.two{grid-template-columns:1fr}}
+input,select,button,textarea{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--ln);border-radius:8px;padding:8px;box-sizing:border-box}
+button{cursor:pointer}.on{border-color:var(--ac);color:var(--ac)}
+.f input:not(#am){width:100%}.f label{display:block;font-size:12px;color:var(--mu);margin:10px 0 4px}
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+#am{width:100%;font-size:24px;border:0;border-bottom:1px solid var(--ln);border-radius:0;background:none;padding:6px 0}
+.ch{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.ch button{border-radius:20px;padding:4px 10px;font-size:12px;color:var(--mu)}.ch .on{color:var(--ac)}
+.pri{width:100%;margin-top:12px;color:var(--ac);border-color:var(--ac);background:none}
+.row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.dn{width:96px;height:96px;border-radius:50%;position:relative;flex:none}.dn:after{content:"";position:absolute;inset:17px;background:var(--cd);border-radius:50%}
+.dn span{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;font-size:11px}
+.dn small{color:var(--mu);font-weight:400;font-size:10px}
+.lg{flex:1;min-width:0;display:grid;grid-template-columns:1fr;gap:4px;font-size:11px}.lg div{display:flex;gap:6px;align-items:center}
+.lg i{width:7px;height:7px;border-radius:50%;flex:none}.lg em{margin-left:auto;font-style:normal;color:var(--mu)}
+.bs{display:flex;align-items:flex-end;gap:5px;height:150px}
+.bs div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:10px;color:var(--mu)}
+.bs i{width:100%;background:var(--ac);border-radius:3px 3px 0 0;min-height:3px;margin:2px 0 4px}
+.bg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px 16px}
+.bg .r{display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.bi{width:78px;padding:3px 6px;text-align:right;font-size:12px}
+.ul{height:2px;background:var(--ln);margin:6px 0 4px}.ul i{display:block;height:100%;background:var(--ac)}
+.bg small{font-size:10px;color:var(--mu)}.ov .ul i{background:var(--er)}.ov small{color:var(--er)}
+.ls{max-height:620px;overflow-y:auto}
+.it{display:flex;gap:6px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--ln)}
+.it .m{flex:1;min-width:0}.it b{display:block;font-size:13px}.it small{color:var(--mu);font-size:11px;overflow-wrap:anywhere}
+.it .a{white-space:nowrap;font-weight:600;font-size:13px}.ib{background:none;border:0;color:var(--mu);padding:2px 4px}
+.mu{color:var(--mu);font-size:12px}
+</style></head><body>
+<div class="w">
+<div class="hd"><b>Finanzas</b><input type="month" id="mo"></div>
+<aside>
+<div class="cd f"><h2>Cargar movimiento</h2>
+<div class="tg"><button data-t="g">Gasto</button><button data-t="i">Ingreso</button></div>
+<input id="am" type="number" step="0.01" placeholder="S/ 0">
+<div class="ch" id="ch"></div>
+<label>Fecha</label><input type="date" id="dt">
+<label>Nota (opcional)</label><input id="nt" placeholder="ej. pasajes de la semana">
+<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="fx" style="width:auto"> Repetir cada mes</label>
+<button class="pri" id="ad">Agregar</button><button class="pri" id="cx" style="display:none;color:var(--mu);border-color:var(--ln)">Cancelar</button></div>
+<div class="cd"><h2>Respaldo</h2><div class="row" style="gap:8px"><button id="ex">Generar</button><button id="im">Restaurar</button></div>
+<textarea id="bk" rows="3" placeholder="Aquí aparece el respaldo. Para restaurar, pega el texto y presiona Restaurar." style="width:100%;margin-top:8px"></textarea><div class="mu" id="ms"></div></div>
+</aside>
+<section>
+<div class="k" id="kp"></div>
+<div class="two">
+<div class="cd"><h2>Gastos por categoría</h2><div class="row" style="flex-wrap:nowrap;gap:10px"><div class="dn" id="dn"><span id="dc"></span></div><div class="lg" id="lg"></div></div></div>
+<div class="cd"><h2>Últimos 6 meses (gastos)</h2><div class="bs" id="bs"></div></div>
+</div>
+<div class="cd"><h2>Presupuestos por categoría · se marca en rojo si te pasas</h2><div class="bg" id="bg"></div></div>
+</section>
+<aside>
+<div class="cd"><div class="row" style="justify-content:space-between;margin-bottom:8px"><h2 style="margin:0">Movimientos del mes</h2>
+<select id="fl" style="padding:3px 6px;font-size:11px"><option value="t">Todas</option><option value="g">Gastos</option><option value="i">Ingresos</option></select></div>
+<button id="fj" style="width:100%;font-size:12px;color:var(--mu)">+ Cargar fijos del mes</button>
+<div class="ls" id="ls"></div></div>
+</aside>
+</div>
+<script>
+const C=['Alimentación','Servicios','Telefonía','Transporte','Deuda','Ocio','Salud','Ropa','Otros'],
+COL=['#3b82f6','#60a5fa','#1d4ed8','#93c5fd','#1e3a8a','#38bdf8','#6366f1','#0ea5e9','#7a7a75'],
+LEG=['Comida','Internet hogar','Agua','Luz','Línea de teléfono'],
+MS=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const $=i=>document.getElementById(i),f=n=>'S/ '+n.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2}),
+esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
+sum=a=>a.reduce((s,x)=>s+x.a,0),ym=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'),
+td=()=>{const d=new Date();return ym(d)+'-'+String(d.getDate()).padStart(2,'0')};
+let S={mv:[],bud:{}},id=Date.now(),cur=ym(new Date()),ty='g',cat=C[0],ed=null,fl='t';
+try{const r=localStorage.getItem('pp3'),o=localStorage.getItem('pp2');
+if(r)S=JSON.parse(r);
+else if(o){const m=JSON.parse(o).months||{};for(const k in m){S.mv.push({id:id++,d:k+'-01',t:'i',c:'Ingreso',a:m[k].inc,n:'Sueldo'});m[k].it.forEach(x=>{if(x.c!='Ahorro')S.mv.push({id:id++,d:k+'-01',t:'g',c:x.c,a:x.a,n:x.n})})}S.init=1}}catch(e){}
+function fijos(m){const p=S.mv.filter(x=>x.f&&x.d.slice(0,7)<m).map(x=>x.d.slice(0,7)).sort().pop();if(!p)return;S.mv.filter(x=>x.f&&x.d.slice(0,7)==p).forEach(x=>{if(!S.mv.some(y=>y.d.slice(0,7)==m&&y.f&&y.n==x.n&&y.c==x.c))S.mv.push({...x,id:id++,d:m+'-01'})})}
+function R(){
+const mv=S.mv.filter(x=>x.d.slice(0,7)==cur),g=mv.filter(x=>x.t=='g'),pv=S.mv.filter(x=>x.d.slice(0,7)<cur).reduce((z,x)=>z+(x.t=='i'?x.a:-x.a),0),I=sum(mv.filter(x=>x.t=='i'))+pv,G=sum(g),Q=I-G;
+$('mo').value=cur;
+$('kp').innerHTML=[['Ingresos del mes',I],['Gastos del mes',G],['Te queda',Q]].map((k,i)=>`<div class="cd${i==2?' ac':''}"><h2>${k[0]}</h2><b${i==2&&Q<0?' style="color:var(--er)"':''}>${f(k[1])}</b>${i==0&&pv?`<div class="mu">incluye ${f(pv)} del mes anterior</div>`:''}</div>`).join('');
+const T=C.map((c,i)=>({c,i,v:sum(g.filter(x=>x.c==c))})),U=T.filter(t=>t.v>0).sort((a,b)=>b.v-a.v);
+let a=0;const st=U.map(t=>{const s=a;a+=t.v/G*100;return `${COL[t.i]} ${s}% ${a}%`});
+$('dn').style.background=G?`conic-gradient(${st.join(',')})`:'var(--ln)';
+$('dc').innerHTML=f(G)+'<small>gastado</small>';
+$('lg').innerHTML=U.map(t=>`<div><i style="background:${COL[t.i]}"></i>${t.c}<em>${Math.round(t.v/G*100)}%</em></div>`).join('')||'<span class="mu">Sin gastos</span>';
+const b=[];for(let i=5;i>=0;i--){const d=new Date(+cur.slice(0,4),+cur.slice(5)-1-i,1),k=ym(d);b.push({l:MS[d.getMonth()],v:sum(S.mv.filter(x=>x.t=='g'&&x.d.slice(0,7)==k))})}
+const mx=Math.max(...b.map(x=>x.v),1);
+$('bs').innerHTML=b.map(x=>`<div>${x.v==mx&&x.v>0?Math.round(x.v):''}<i style="height:${x.v/mx*85}%"></i>${x.l}</div>`).join('');
+$('bg').innerHTML=C.map((c,i)=>{const l=S.bud[c],v=T[i].v,o=l>0&&v>l;return `<div class="${o?'ov':''}"><div class="r">${c}<input class="bi" type="number" data-b="${c}" placeholder="—" value="${l||''}"></div><div class="ul"><i style="width:${l>0?Math.min(100,v/l*100):(v>0?100:0)}%"></i></div><small>${f(v)} · ${l>0?(o?'superaste '+f(l):'de '+f(l)):'sin límite'}</small></div>`}).join('');
+const L=mv.filter(x=>fl=='t'||x.t==fl).sort((a,b)=>b.d.localeCompare(a.d)||b.id-a.id);
+$('ls').innerHTML=(pv&&fl!='g'?`<div class="it"><div class="m"><b>Saldo del mes anterior</b><small>automático</small></div><span class="a" style="color:var(--ac)">${pv<0?'−':'+'} ${f(Math.abs(pv))}</span></div>`:'')+L.map(x=>`<div class="it"><div class="m"><b>${x.c}</b><small>${x.d.slice(8)} ${MS[+x.d.slice(5,7)-1].toLowerCase()}${x.n?' · '+esc(x.n):''}</small></div><span class="a"${x.t=='i'?' style="color:var(--ac)"':''}>${x.t=='i'?'+':'−'} ${f(x.a)}</span><button class="ib" data-e="${x.id}">✎</button><button class="ib" data-x="${x.id}">✕</button></div>`).join('')||'<span class="mu">Sin movimientos</span>';
+document.querySelectorAll('[data-t]').forEach(x=>x.classList.toggle('on',x.dataset.t==ty));
+$('ch').innerHTML=C.map(c=>`<button data-c="${c}" class="${c==cat?'on':''}">${c}</button>`).join('');
+$('ch').style.display=ty=='g'?'':'none';
+$('ad').textContent=ed?'Guardar cambios':'Agregar';$('cx').style.display=ed?'':'none';
+if(!$('dt').value)$('dt').value=cur==ym(new Date())?td():cur+'-01';
+try{localStorage.setItem('pp3',JSON.stringify(S))}catch(e){}}
+$('mo').onchange=e=>{if(e.target.value){cur=e.target.value;$('dt').value='';R()}};
+document.querySelectorAll('[data-t]').forEach(x=>x.onclick=()=>{ty=x.dataset.t;R()});
+$('ch').onclick=e=>{if(e.target.dataset.c){cat=e.target.dataset.c;R()}};
+$('ad').onclick=()=>{const a=parseFloat($('am').value);if(!(a>0))return;const o={t:ty,c:ty=='g'?cat:'Ingreso',a,d:$('dt').value||td(),n:$('nt').value.trim(),f:$('fx').checked?1:0};if(ed){Object.assign(S.mv.find(x=>x.id==ed),o);ed=null}else S.mv.push({id:id++,...o});$('am').value=$('nt').value=$('dt').value='';cur=o.d.slice(0,7);$('fx').checked=false;R()};
+$('cx').onclick=()=>{ed=null;$('fx').checked=false;$('am').value=$('nt').value=$('dt').value='';R()};
+$('ls').onclick=e=>{const t=e.target;if(t.dataset.x){S.mv=S.mv.filter(x=>x.id!=t.dataset.x);R()}else if(t.dataset.e){const x=S.mv.find(y=>y.id==t.dataset.e);ed=x.id;ty=x.t;if(x.t=='g')cat=x.c;$('am').value=x.a;$('dt').value=x.d;$('nt').value=x.n||'';$('fx').checked=!!x.f;R()}};
+$('bg').onchange=e=>{const c=e.target.dataset.b;if(c){const v=parseFloat(e.target.value);if(v>0)S.bud[c]=v;else delete S.bud[c];R()}};
+$('fl').onchange=e=>{fl=e.target.value;R()};
+$('fj').onclick=()=>{fijos(cur);R()};
+$('ex').onclick=()=>{const t=JSON.stringify(S),m=x=>$('ms').textContent=x;$('bk').value=t;$('bk').select();try{navigator.clipboard.writeText(t).then(()=>m('Copiado. Guárdalo en tus notas.'),()=>m('Selecciona y copia el texto.'))}catch(e){m('Selecciona y copia el texto.')}};
+$('im').onclick=()=>{try{const o=JSON.parse($('bk').value);if(!o||!Array.isArray(o.mv))throw 0;o.bud=o.bud||{};if(!o.mv.some(x=>x.f))o.mv.forEach(x=>{if(LEG.includes(x.n))x.f=1});S=o;R();$('ms').textContent='Respaldo restaurado.'}catch(e){$('ms').textContent='El texto no es un respaldo válido.'}};
+R();
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script></body></html>
